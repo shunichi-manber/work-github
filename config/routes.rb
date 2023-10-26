@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'homes/top'
+  end
+
+  namespace :public do
+    resources :customers, only: [:show, :edit]
+  end
+
   devise_for :customers, skip: [:passwords], controllers: {
     registrations: "public/registrations",
     sessions: "public/sessions"
