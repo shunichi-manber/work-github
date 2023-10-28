@@ -6,7 +6,8 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/dc50be534c.js" crossorigin="anonymous"></script>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
@@ -18,6 +19,10 @@
         <% if admin_signed_in? %>
           <li>
             <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+          </li>
+        <% elsif customer_signed_in? %>
+          <li>
+            <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
           </li>
         <% else %>
           <li>
@@ -31,24 +36,6 @@
           </li>
           <li>
             <%= link_to "ログイン", admin_session_path %>
-          </li>
-        <% end %>
-        <% if user_signed_in? %>
-          <li>
-            <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
-          </li>
-        <% else %>
-          <li>
-            <%= link_to "About", admin_session_path %>
-          </li>
-          <li>
-            <%= link_to "商品一覧", "" %>
-          </li>
-          <li>
-            <%= link_to "新規登録", new_customer_registration_path %>
-          </li>
-          <li>
-            <%= link_to "ログイン", new_customer_session_path %>
           </li>
         <% end %>
       </ul>
