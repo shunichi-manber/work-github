@@ -13,32 +13,45 @@
 
   <body>
     <header>
-      <h2>LOGO</h2>
+      <nav>
+        <h2>LOGO</h2>
 
-      <ul>
-        <% if admin_signed_in? %>
-          <li>
-            <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
-          </li>
-        <% elsif customer_signed_in? %>
-          <li>
-            <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
-          </li>
-        <% else %>
-          <li>
-            <%= link_to "About", admin_session_path %>
-          </li>
-          <li>
-            <%= link_to "商品一覧", admin_session_path %>
-          </li>
-          <li>
-            <%= link_to "新規登録", admin_session_path %>
-          </li>
-          <li>
-            <%= link_to "ログイン", admin_session_path %>
-          </li>
-        <% end %>
-      </ul>
+        <div class="">
+          <ul>
+            <% if admin_signed_in? %>
+              <li>
+                <%= link_to "ログアウト", destroy_admin_session_path, method: :delete %>
+              </li>
+            <% elsif customer_signed_in? %>
+              <li>
+                <%= link_to "マイページ", customers_path %>
+              </li>
+              <li>
+                <%= link_to "商品一覧", %>
+              </li>
+              <li>
+                <%= link_to "カート", %>
+              </li>
+              <li>
+                <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
+              </li>
+            <% else %>
+              <li>
+                <%= link_to "About", about_path %>
+              </li>
+              <li>
+                <%= link_to "商品一覧", admin_session_path %>
+              </li>
+              <li>
+                <%= link_to "新規登録", admin_session_path %>
+              </li>
+              <li>
+                <%= link_to "ログイン", admin_session_path %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </nav>
     </header>
     <%= yield %>
   </body>
