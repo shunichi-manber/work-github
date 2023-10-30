@@ -5,6 +5,22 @@ class Public::CustomersController < ApplicationController
   end
 
   def edit
+    @customer = current_customer
+  end
+  
+  def update
+    @user = current_customer
+    if @user.update(user_params)
+      redirect_to customers_path
+    else
+      render :edit
+    end
+  end
+  
+  def check
+  end
+  
+  def withdraw
   end
 
   private
