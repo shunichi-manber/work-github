@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root to: 'homes#top'
+    resources :items, only: [:index, :new, :create, :show, :edit, :update]
   end
 
   scope module: :public do
@@ -18,9 +19,14 @@ Rails.application.routes.draw do
     #resource :customers, only: [:show, :edit, :update]
     get '/customers' => 'customers#show', as: 'customers'
     get '/customers/information/edit' => 'customers#edit', as: 'edit_customers'
-    patch '/customers/information' => 'customers#update', as: 'update'
-    get 'check' => 'customers#check', as: 'check'
-    patch 'withdraw' => 'customers#withdraw', as: 'withdraw'
+    patch '/customers/information' => 'customers#update', as: 'update_customers'
+    get '/customers/check' => 'customers#check', as: 'check'
+    patch '/customers/withdraw' => 'customers#withdraw', as: 'withdraw'
+
+    namespace :public do
+    get 'items/index'
+    get 'items/show'
+  end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

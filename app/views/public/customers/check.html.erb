@@ -12,6 +12,8 @@
     <%= link_to '退会しない', edit_customers_path %>
   </div>
   <div>
-    <%= link_to '退会する', edit_customers_path %>
+    <%= form_with(model: @customer, url: withdraw_path(@customer), method: :patch) do |f| %>
+      <%= f.submit "退会する" %>
+    <% end %>
   </div>
 </div>

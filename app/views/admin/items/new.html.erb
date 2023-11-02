@@ -1,0 +1,20 @@
+<h1>Admin::Items#new</h1>
+<p>Find me in app/views/admin/items/new.html.erb</p>
+
+<div>
+  <%= form_with model: Item.new do |f| %>
+  <div>
+    <h3>商品名</h3>
+    <%= f.text_field :name %>
+
+    <h3>商品説明</h3>
+    <%= f.text_area :introduction %>
+
+    <h3>税抜価格</h3>
+    <%= f.text_field :price %>
+
+    <%= f.submit '新規登録', class:"btn btn-success" %>
+  <% end %>
+  </div>
+</div>
+

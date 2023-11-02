@@ -12,7 +12,7 @@
           <% end %>
         </ul>
       <% end %>
-      <%= form_with model: @customer, url: 'update_path', method: :patch do |f| %>
+      <%= form_with model: @customer, url: update_customers_path, method: :patch do |f| %>
         <div class="form-group">
           <label for="inputName">氏名</label>
           <%= f.text_field :last_name %>
