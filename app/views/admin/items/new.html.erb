@@ -4,6 +4,10 @@
 <div>
   <%= form_with model: Item.new, url: admin_items_path do |f| %>
   <div>
+
+    <h3>商品画像</h3>
+    <%= f.file_field :image, accept: "image/*" %>
+
     <h3>商品名</h3>
     <%= f.text_field :name %>
 

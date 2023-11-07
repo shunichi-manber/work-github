@@ -1,2 +1,24 @@
 <h1>Public::Items#show</h1>
 <p>Find me in app/views/public/items/show.html.erb</p>
+
+<div class="col-md-8 offset-md-1">
+<h2>商品詳細</h2>
+ <table class="table">
+  <tbody>
+   <tr>
+
+    <td><p>画像</p>
+      <% if @item.image.attached? %>
+        <%= image_tag @item.image, size: "100x100" %>
+      <% else %>
+        <%= image_tag 'no_image.jp', size: "100x100" %>
+      <% end %></td>
+
+    <td>商品名 <%= @item.name %></td>
+    <td>商品説明 <%= @item.introduction %></td>
+    <td>税込価格</br>(税抜価格) <%= @item.price %></td>
+    <td><%= link_to 'カートに入れる', items_path, class:"btn btn-sm btn-success" %></td>
+   </tr>
+  </tbody>
+ </table>
+</div>
