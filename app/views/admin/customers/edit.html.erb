@@ -1,2 +1,39 @@
 <h1>Admin::Customers#edit</h1>
 <p>Find me in app/views/admin/customers/edit.html.erb</p>
+
+<%= form_with model: @customer, url: admin_customer_path(@customer.id), method: :patch do |f| %>
+        <div class="form-group">
+          <label for="inputname">氏名</label>
+          <%= f.text_field :last_name, autofocus: true, id:"inputname", placeholder:"姓"%>
+          <%= f.text_field :first_name, autofocus: true, id:"inputname", placeholder:"名"%>
+
+          <label for="inputname">フリガナ</label>
+          <%= f.text_field :last_name_kana, autofocus: true, id:"inputname", placeholder:"セイ"%>
+          <%= f.text_field :first_name_kana, autofocus: true, id:"inputname", placeholder:"メイ"%>
+        </div>
+
+        <div class="form-group">
+          <label for="inputpostal_code">郵便番号</label><br>
+          <%= f.text_area :postal_code, autofocus: true, id:"inputpostal_code", placeholder:"郵便番号"%>
+        </div>
+
+        <div class="form-group">
+          <label for="inputaddress">住所</label><br>
+          <%= f.text_area :address, autofocus: true, id:"inputaddress", placeholder:"住所"%>
+        </div>
+
+        <div class="form-group">
+          <label for="inputtelephone_number">電話番号</label><br>
+          <%= f.text_area :telephone_number, autofocus: true, id:"inputtelephone_number", placeholder:"電話番号"%>
+        </div>
+
+        <div class="form-group">
+          <label for="inputemail">メールアドレス</label><br>
+          <%= f.text_area :email, autofocus: true, id:"inputemail", placeholder:"メールアドレス"%>
+        </div>
+
+        <div class="form-group">
+          <%= f.submit "変更を保存", class:'btn btn-sm btn-success' %>
+        </div>
+      <% end %>
+    </div>
