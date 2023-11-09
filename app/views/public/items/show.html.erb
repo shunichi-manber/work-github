@@ -6,7 +6,8 @@
  <table class="table">
   <tbody>
    <tr>
-
+  <%= form_for @cart_item do |f| %>
+  <%= f.hidden_field :item_id, value: @item.id %>
     <td><p>画像</p>
       <% if @item.image.attached? %>
         <%= image_tag @item.image, size: "100x100" %>
@@ -17,7 +18,9 @@
     <td>商品名 <%= @item.name %></td>
     <td>商品説明 <%= @item.introduction %></td>
     <td>税込価格</br>(税抜価格) <%= @item.price %></td>
-    <td><%= link_to 'カートに入れる', items_path, class:"btn btn-sm btn-success" %></td>
+    <td><%= f.select :amount, *[1..3] %></td>
+    <td><%= f.submit 'カートに入れる', class: 'btn btn-sm btn-success' %></td>
+<% end %>
    </tr>
   </tbody>
  </table>

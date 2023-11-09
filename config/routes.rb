@@ -29,6 +29,9 @@ Rails.application.routes.draw do
     get '/customers/check' => 'customers#check', as: 'check'
     patch '/customers/withdraw' => 'customers#withdraw', as: 'withdraw'
     resources :items, only: [:index, :show]
+    resources :cart_items, only: [:index, :update, :destroy, :create] do
+      delete 'destroy_all', on: :collection
+    end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
