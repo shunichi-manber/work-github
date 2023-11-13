@@ -1,5 +1,6 @@
 class Public::CartItemsController < ApplicationController
   def index
+    @cart_item = current_customer
     @cart_items = CartItem.all
   end
 
@@ -9,7 +10,13 @@ class Public::CartItemsController < ApplicationController
     @cart_item.save
     redirect_to cart_items_path
   end
-
+  
+  def update
+    @cart_item = CartItem.find(params[:id])
+    @cart_item.update(cart_item_params)
+    redirect_to cart_items_path(current_customer)
+  end
+  
   private
 
   def cart_item_params
