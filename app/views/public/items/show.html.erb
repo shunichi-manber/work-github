@@ -18,7 +18,7 @@
     <td>商品名 <%= @item.name %></td>
     <td>商品説明 <%= @item.introduction %></td>
     <td>税込価格 <%= @item.with_tax_price %></td>
-    <td><%= f.select :amount, *[1..5] %></td>
+    <td><%= f.select :amount, *[1..10] %></td>
     <td><%= f.submit 'カートに入れる', class: 'btn btn-sm btn-success' %></td>
    </tr>
   </tbody>
