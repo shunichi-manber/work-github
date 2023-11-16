@@ -17,15 +17,10 @@
       <% @sum = 0 %>
       <% @cart_items.each do |cart_item| %>
     <tr>
-      <td>
-        <% if cart_item.item.image.attached? %>
-        <%= image_tag cart_item.item.image, size: "100x100" %>
-      <% else %>
-        <%= image_tag 'no_image.jp', size: "100x100" %>
-      <% end %>
+      <td><%= image_tag @item.get_resized_image(200*200) %>
         <%= cart_item.item.name %></td>
       <td><%= cart_item.item.with_tax_price %></td>
-        <%= form_for cart_item, url: cart_item_path(cart_item.id), method: :patch do |f| %>
+        <%= form_with model: cart_item, url: cart_item_path(cart_item.id), method: :patch do |f| %>
       <td><%= f.select :amount, *[1..10] %>
           <%= f.submit '変更', class: 'btn btn-sm btn-success' %>
       </td>
@@ -38,5 +33,7 @@
     </tbody>
   </table>
   合計金額 <%= @sum %>
+
+  <%= link_to '注文情報入力に進む', new_order_path, class:'btn btn-sm btn-success' %>
 
   <% end %>

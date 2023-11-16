@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
 
+  namespace :public do
+    get 'orders/new'
+    get 'orders/index'
+    get 'orders/show'
+  end
   namespace :admin do
     get 'customers/index'
     get 'customers/show'
@@ -31,6 +36,9 @@ Rails.application.routes.draw do
     resources :items, only: [:index, :show]
     resources :cart_items, only: [:index, :update, :destroy, :create] do
       delete 'destroy_all', on: :collection
+    end
+    resources :orders, only: [:new, :index, :show, :create] do
+      post 'info', on: :collection
     end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

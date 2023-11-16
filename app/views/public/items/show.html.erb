@@ -3,17 +3,13 @@
 
 <div class="col-md-8 offset-md-1">
 <h2>商品詳細</h2>
-<%= form_for @cart_item do |f| %>
+<%= form_with model: @cart_item do |f| %>
  <table class="table">
   <tbody>
    <tr>
   <%= f.hidden_field :item_id, value: @item.id %>
-    <td><p>画像</p>
-      <% if @item.image.attached? %>
-        <%= image_tag @item.image, size: "100x100" %>
-      <% else %>
-        <%= image_tag 'no_image.jp', size: "100x100" %>
-      <% end %></td>
+  <%= f.hidden_field :customer_id, value: current_customer.id %>
+    <td>画像 <%= image_tag @item.get_resized_image(200*200) %></td>
 
     <td>商品名 <%= @item.name %></td>
     <td>商品説明 <%= @item.introduction %></td>
