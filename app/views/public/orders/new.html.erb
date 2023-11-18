@@ -14,7 +14,7 @@
 
   <h3>お届け先</h3>
     <p><%= f.radio_button :select_address, 0 %>自身の住所</p>
-       <%= current_customer.full_address %>
+       <%= current_customer.address %>
 
     <p> <%= f.radio_button :select_address, 2 %>新しいお届け先</p>
 
