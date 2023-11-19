@@ -9,7 +9,7 @@
    <tr>
   <%= f.hidden_field :item_id, value: @item.id %>
   <%= f.hidden_field :customer_id, value: current_customer.id %>
-    <td>画像 <%= image_tag @item.get_resized_image(200*200) %></td>
+    <td>画像 <%= image_tag @item.get_image %></td>
 
     <td>商品名 <%= @item.name %></td>
     <td>商品説明 <%= @item.introduction %></td>

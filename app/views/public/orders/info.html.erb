@@ -14,7 +14,7 @@
 
     <tr>
       <td>
-        <%= image_tag cart_item.item.get_resized_image(200*200) %>
+        <%= image_tag cart_item.item.get_image %>
         <%= cart_item.item.name %>
       </td>
       <td><%= cart_item.item.with_tax_price %></td>
@@ -59,7 +59,7 @@
   <%= f.hidden_field :payment_method, value:  @order.payment_method %>
   <%= f.hidden_field :postage, value: 800 %>
   <%= f.hidden_field :post_code, value: @order.post_code %>
-  <%= f.hidden_field :amount_requested, value: @sum + 800%>
+  <%= f.hidden_field :payment_amount, value: @sum + 800%>
   <%= f.hidden_field :name, value: @order.name %>
   <%= f.submit "注文を確定する" %>
 <% end %>
