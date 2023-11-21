@@ -3,7 +3,7 @@
 <div>
   <div>
     <p>登録情報</p>
-    <%= link_to '編集する', edit_customers_path %>
+    <%= link_to '編集する', edit_customers_path, class: 'btn btn-sm btn-sucsses' %>
   </div>
 </div>
 
@@ -33,6 +33,9 @@
           <tr>
             <th>メールアドレス</th>
             <th><%= @customer.email %></th>
+          </tr>
+          <tr>
+            <th>注文履歴<%= link_to "一覧を見る", orders_path, class: 'btn btn-sm btn-primary' %></th>
           </tr>
         </tbody>
       </table>

@@ -54,7 +54,7 @@
   </tr>
 </table>
 
-<%= form_with model: @order_new, url: orders_path, method: :create do |f| %>
+<%= form_with model: @order_new, url: orders_path, method: :post do |f| %>
   <%= f.hidden_field :customer_id, value: current_customer.id %>
   <%= f.hidden_field :payment_method, value:  @order.payment_method %>
   <%= f.hidden_field :postage, value: 800 %>
