@@ -1,0 +1,52 @@
+<h1>Admin::Orders#show</h1>
+<p>Find me in app/views/admin/orders/show.html.erb</p>
+
+<h3>注文履歴詳細</h3>
+<% @sum = 0 %>
+<div>
+  <p>購入者</p>
+  <%= @order.customer.last_name+@order.customer.first_name %>
+
+  <p>注文日</p>
+  <%= @order.created_at.strftime('%Y/%m/%d') %>
+
+  <p>配送先</p>
+  <%= @order.post_code + @order.name %>
+
+  <p>支払方法</p>
+  <%= @order.payment_method %>
+</div>
+
+<div>
+  <h3>注文内容</h3>
+  <table>
+    <thead>
+      <th>商品</th>
+      <th>単価(税込)</th>
+      <th>個数</th>
+      <th>小計</th>
+    </thead>
+    <tbody>
+      <% @order.order_details.each do |detail| %>
+      <tr>
+        <td><%= detail.item.name %></td>
+        <td><%= detail.item.with_tax_price %></td>
+        <td><%= detail.pieces %></td>
+        <td><%= detail.item.with_tax_price * detail.pieces %></td>
+        <% @sum += detail.item.with_tax_price * detail.pieces %>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div>
+  <p>商品合計</p>
+  <%= @sum %>
+
+  <p>送料</p>
+  <p>800</p>
+
+  <p>請求金額</p>
+  <%= @order.payment_amount %>
+</div>
