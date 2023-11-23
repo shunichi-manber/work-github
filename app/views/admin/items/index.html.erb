@@ -2,7 +2,12 @@
 <p>Find me in app/views/admin/items/index.html.erb</p>
 
 <div>
-<table>
+  <h3>商品一覧</h3>
+  <div><%= link_to new_admin_item_path do %>
+    <i class="fa-solid fa-circle-plus" style="color: #221f51;"></i>
+    <% end %>
+  </div>
+<table class="table">
   <thead>
        <th>商品ID</th>
       <th>商品名</th>
