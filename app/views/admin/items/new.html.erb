@@ -1,6 +1,15 @@
 <h1>Admin::Items#new</h1>
 <p>Find me in app/views/admin/items/new.html.erb</p>
 
+<% if @item.errors.any? %>
+  <%= @item.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @item.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <div class="row justify-content-center">
   <%= form_with model: Item.new, url: admin_items_path do |f| %>
   <div class="form-group">
