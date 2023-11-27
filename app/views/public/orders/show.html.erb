@@ -38,6 +38,7 @@
         <td><%= detail.pieces %></td>
         <td><%= detail.item.with_tax_price * detail.pieces %></td>
       </tr>
+      <%= @sum = detail.item.with_tax_price * detail.pieces %>
       <% end %>
     </tbody>
   </table>

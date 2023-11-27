@@ -2,21 +2,23 @@
 <p>Find me in app/views/public/cart_items/index.html.erb</p>
 <div class="row">
   <p class="col text-left">ショッピングカート</p>
-  <p class="col text-right text-white btn-sm btn-danger"><%= link_to "カートを空にする", destroy_all_cart_items_path, method: :delete %></p>
+  <p class="col text-right"><%= link_to "カートを空にする", destroy_all_cart_items_path, method: :delete, class: 'text-white btn-sm btn-danger' %></p>
 </div>
 
   <% if @cart_item == current_customer %>
-  <table class="table">
+  <div class="row">
+  <table class="table-bordered">
     <thead>
       <th>商品名</th>
       <th>単価(税込)</th>
       <th>数量</th>
       <th>小計</th>
+      <th>##</th>
     </thead>
     <tbody>
       <% @sum = 0 %>
       <% @cart_items.each do |cart_item| %>
-    <tr>
+    <tr scope="row">
       <td><%= image_tag cart_item.item.get_image %>
         <%= cart_item.item.name %></td>
       <td><%= cart_item.item.with_tax_price %></td>
@@ -27,14 +29,15 @@
         <% end %>
       <td><%= cart_item.subtotal %></td>
       <td><%= link_to "削除", cart_item_path(cart_item.id), method: :delete %></td>
-      </tr>
+    </tr>
       <% @sum += cart_item.subtotal %>
       <% end %>
     </tbody>
   </table>
+  </div>
 
   <div class="row">
-    <div class="col mr-auto"><%= link_to '買い物を続ける', items_path %></div>
+    <div class="col mr-auto"><%= link_to '買い物を続ける', root_path %></div>
     <div class="col ml-auto">合計金額 <%= @sum %></div>
   </div>
 
