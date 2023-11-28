@@ -63,6 +63,9 @@
       </nav>
     </header>
     <body class="container">
+      <div>
+        <%= flash[:notice] %>
+      </div>
        <%= yield %>
     </body>
   </body>

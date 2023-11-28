@@ -6,8 +6,8 @@ class Public::SessionsController < Devise::SessionsController
   before_action :customer_state, only: [:create]
 
   def after_sign_in_path_for(resource)
-    #flash[:notice] = "ようこそ"
-    customers_path
+    flash[:notice] = "ようこそ"
+    root_path
   end
   # GET /resource/sign_in
   # def new
@@ -43,11 +43,8 @@ class Public::SessionsController < Devise::SessionsController
       # 【処理内容2】 取得したアカウントのパスワードと入力されたパスワードが一致してるかを判別
       if @customer.valid_password?(params[:customer][:password])
         # 【処理内容3】
-        if @customer.is_active
+        unless @customer.is_active
           redirect_to new_customer_registration_path
-        else
-          sign_in @customer
-          redirect_to root_path
         end
       end
     end
