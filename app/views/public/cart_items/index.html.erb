@@ -5,7 +5,7 @@
   <p class="col text-right"><%= link_to "カートを空にする", destroy_all_cart_items_path, method: :delete, class: 'text-white btn-sm btn-danger' %></p>
 </div>
 
-  <% if @cart_item == current_customer %>
+<% if @cart_items.present? %>
   <div class="row">
   <table class="table-bordered">
     <thead>
@@ -44,4 +44,4 @@
   <div class="row justify-content-center">
     <%= link_to '注文情報入力に進む', new_order_path, class:'btn btn-sm btn-success' %>
   </div>
-  <% end %>
+<% end %>
