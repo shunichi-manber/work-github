@@ -1,0 +1,62 @@
+<h1>Public::Orders#show</h1>
+<p>Find me in app/views/public/orders/show.html.erb</p>
+
+<h3>注文履歴詳細</h3>
+
+<div>
+  <table><h3>注文情報</h3>
+    <thead>
+      <th>注文日</th>
+      <th>配送先</th>
+      <th>支払方法</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+        <td><%= @order.post_code %></td>
+        <td><%= @order.payment_method %></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<% @sum = 0 %>
+
+<div>
+  <table><h3>注文内容</h3>
+    <thead>
+      <th>商品</th>
+      <th>単価(税込)</th>
+      <th>個数</th>
+      <th>小計</th>
+    </thead>
+    <tbody>
+      <% @order.order_details.each do |detail| %>
+      <tr>
+        <td><%= detail.item.name %></td>
+        <td><%= detail.item.with_tax_price %></td>
+        <td><%= detail.pieces %></td>
+        <td><%= detail.item.with_tax_price * detail.pieces %></td>
+      </tr>
+      <%= @sum = detail.item.with_tax_price * detail.pieces %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div>
+  <table><h3>請求情報</h3>
+    <tr>
+      <td>商品合計</td>
+      <td><%= @sum %></td>
+    </tr>
+    <tr>
+      <td>送料</td>
+      <td>800</td>
+    </tr>
+    <tr>
+      <td>請求金額</td>
+      <td><%= @order.payment_amount %></td>
+    </tr>
+  </table>
+</div>

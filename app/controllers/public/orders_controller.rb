@@ -1,0 +1,58 @@
+class Public::OrdersController < ApplicationController
+  def new
+    @order = Order.new
+  end
+
+  def info
+    @order = Order.new(order_params)
+    @cart_items = current_customer.cart_items
+    if params[:order][:select_address] == "0"
+      @order.post_code = current_customer.postal_code + current_customer.address
+      @order.name = current_customer.last_name + current_customer.first_name
+    elsif params[:order][:select_address] == "2"
+      @order.customer_id = current_customer.id
+    end
+      @order_new = Order.new
+      #render :info
+  end
+
+  def create
+    @order = Order.new(order_params)
+    @order.customer_id = current_customer.id
+    @order.save
+    @cart_items = current_customer.cart_items.all
+
+    @cart_items.each do |cart_item|
+      @order_details = OrderDetail.new
+      @order_details.order_id = @order.id
+      @order_details.item_id = cart_item.item.id
+      @order_details.price = cart_item.item.with_tax_price
+      @order_details.pieces = cart_item.amount
+      @order_details.save!
+    end
+
+    CartItem.destroy_all
+    redirect_to complete_orders_path
+  end
+
+  def index
+    @orders = current_customer.order
+  end
+
+  def show
+    @order = Order.find(params[:id])
+  end
+
+  private
+
+  def order_params
+    params.require(:order).permit(:customer_id, :post_code, :name, :payment_amount, :postage, :payment_method,)
+  end
+
+  def cartitem_nill
+    cart_items = current_customer.cart_items
+    if cart_items.blank?
+      redirect_to cart_items_path
+    end
+  end
+end

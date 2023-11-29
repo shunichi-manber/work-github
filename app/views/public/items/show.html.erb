@@ -1,0 +1,23 @@
+<h1>Public::Items#show</h1>
+<p>Find me in app/views/public/items/show.html.erb</p>
+
+<div class="col-md-8 offset-md-1">
+<h2>商品詳細</h2>
+<%= form_with model: @cart_item do |f| %>
+ <table class="table">
+  <tbody>
+   <tr>
+  <%= f.hidden_field :item_id, value: @item.id %>
+  <%= f.hidden_field :customer_id, value: current_customer.id %>
+    <td>画像 <%= image_tag @item.get_image %></td>
+
+    <td>商品名 <%= @item.name %></td>
+    <td>商品説明 <%= @item.introduction %></td>
+    <td>税込価格 <%= @item.with_tax_price %></td>
+    <td><%= f.select :amount, *[1..10] %></td>
+    <td><%= f.submit 'カートに入れる', class: 'btn btn-sm btn-success' %></td>
+   </tr>
+  </tbody>
+ </table>
+ <% end %>
+</div>
